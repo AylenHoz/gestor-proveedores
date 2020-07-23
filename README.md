@@ -17,13 +17,13 @@ Mira la sección de **Despliegue** para conocer como desplegar el proyecto.
 
 ### Pre-requisitos 📋
 
-_- Python 3.5.0_
+_- Python 3.5.0:_ https://www.python.org/downloads/
 
 _- Comando pip._
 
-_- Django (última versión)_
+_- Django (última versión):_ https://www.djangoproject.com/
 
-_- Sqlite3._
+_- Sqlite 3:_ https://www.sqlite.org/index.html
 
 ### Instalación en Ubuntu 🔧
 
@@ -47,7 +47,7 @@ Para conocer los paquetes instalados globalmente:
 ```
 $ pip freeze
 ```
-4._Intalando Sqlite3..._
+4._Intalando Sqlite 3..._
 ```
 $ sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 ```
@@ -126,7 +126,7 @@ _La Vista decide qué datos mostrará el Template._
 7. El Template se renderiza en el navegador para ser mostrado.
 
 Se utilizaron además servicios REST para las peticiones, siendo métodos utilizados GET y POST.
-Para la base de datos se ha utilizado el motor Sqlite3.
+Para la base de datos se ha utilizado el motor Sqlite 3.
 
 ## Posibles mejoras 🛠️
 - Las validaciones de los campos podrían mejorarse según la lógica del negocio y su ubicación geográfica. Ejemplo: Composición del CUIT en otro país distinto a la Argentina.

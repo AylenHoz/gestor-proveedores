@@ -61,21 +61,21 @@ _Desplegando el proyecto por primera vez:_
 ```
 $ cd gestor-proveedores
 ```
-6. _Creamos las migraciones correspondientes a las aplicaciones ejecutando:_
+3. _Creamos las migraciones correspondientes a las aplicaciones ejecutando:_
 ```
 $ python manage.py makemigrations
 ```
-NOTA: Este comando creará la base de datos del proyecto.
+📌 NOTA: Este comando creará la base de datos del proyecto.
 
-3. _Ejecutamos las migraciones creadas:_
+4. _Ejecutamos las migraciones creadas:_
 ```
 $ python manage.py migrate
 ```
-4. _Creamos el superuser que nos permitirá acceder al administrador de Django en el proyecto:_
+5. _Creamos el superuser que nos permitirá acceder al administrador de Django en el proyecto:_
 ```
 $ python manage.py superuser
 ```
-5. _Introduzca las credenciales que desea para el administrador._
+6. _Introduzca las credenciales que desea para el administrador._
 
 7. _Finalmente, iniciamos el server:_
 ```
@@ -108,6 +108,33 @@ $ cd gestor-proveedores
 $ python manage.py test apps/proveedor
 ```
 4. _Listo, ahora ¡Observa los resultados!_
+
+## Arquitectura 📖
+El framework Django utiliza un patrón de arquitectura MTV (Model-Template-View), similar al conocido patrón MVC, por ello se decidió utilizar dicho patrón.
+
+_El Modelo manipula los datos de la aplicación._
+_El Template define cómo se mostrarán los datos en el navegador._
+_La Vista decide qué datos mostrará el Template._
+
+¿Cómo funciona?
+1. El navegador hace una petición a una url, derivando en el envío de la petición a la Vista configurada.
+2. La Vista, donde se encuentra programada la lógica de negocio, le hace la petición al Modelo solicitando o enviando datos.
+3. El Modelo busca los datos solicitados o guarda los datos recibidos en la base de datos.
+4. La base de datos responde al Modelo.
+5. El Modelo manda la respuesta a la Vista.
+6. La Vista envía los datos o respuesta al Template correspondiente.
+7. El Template se renderiza en el navegador para ser mostrado.
+
+Se utilizaron además servicios REST para las peticiones, siendo métodos utilizados GET y POST.
+Para la base de datos se ha utilizado el motor Sqlite3.
+
+## Posibles mejoras 🛠️
+- Las validaciones de los campos podrían mejorarse según la lógica del negocio y su ubicación geográfica. Ejemplo: Composición del CUIT en otro país distinto a la Argentina.
+- Los valores de los select de Provincia y Responsable Inscripto podrían ser cargados en la base de datos para evitar ensuciar el código con arrays innecesarios.
+- Podría permitirse que una dirección pertenezca a más de un proveedor, para contemplar familiares.
+- Podría permitirse que los valores de ciertos campos permitan valores con acento y/o ñ. No ha sido posible en esta versión ya que, al toparse con este error, no se encontró una solución disponible para Python 3 al realizar la búsqueda de una solución en el tiempo estipulado para el proyecto. Se conoce que existía una sección de código que solucionaba este error para versiones de Python inferiores a 2.5, pero no era recomendable su uso ya que generaba conflictos a largo plazo.
+- Debería aplicarse una baja lógica de los proveedores, no una baja física como se realiza actualmente. De esta forma, se mantendría un histórico en la base de datos.
+
 
 ## Autor/es ✒️
 

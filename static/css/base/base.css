@@ -1,0 +1,58 @@
+.nav-bg-personalize {
+    background-color: #4f5856;
+}
+
+.nav-bg-personalize a {
+    border: none;
+}
+
+.app-title-position {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.bienvenido {
+    margin-top: 140px !important;
+}
+
+.bienvenido h3 {
+    margin: auto;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    font-weight: bold;
+    font-size: 100px;
+    opacity: 0.2;
+}
+
+.action-button-color {
+    background-color: #4F5856;
+}
+
+.button-list-style {
+    margin-left: auto !important;
+    margin-right: 5%;
+}
+
+.action-button-color:hover {
+    background-color: #2F3333;
+}
+
+.icono-button-action {
+    margin-right: 7px;
+}
+
+.title-bar {
+    width: 100%;
+    background-color: #77c2ad;
+    margin-top: 0 !important;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.ml-5-percent {
+    margin-left: 5%;
+}
+
+.mr-5-percent {
+    margin-right: 5%;
+}

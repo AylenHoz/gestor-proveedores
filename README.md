@@ -3,6 +3,12 @@
 _CRUD de proveedores con validaciones de campos. Desarrollado en Python/Django._
 
 ## Comenzando 🚀
+1. _Abre la consola y posicionate en la carpeta donde desea que el proyecto se ubique._
+
+2. _Ejecute el siguiente comando:_
+```
+$ git clone https://github.com/AylenHoz/gestor-proveedores.git
+```
 
 _No olvides cumplir con los pre-requisitos del proyecto._
 
@@ -48,12 +54,12 @@ $ sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqli
 
 ## Despliegue 📦
 
-## _Desplegando el proyecto por primera vez:_
+_Desplegando el proyecto por primera vez:_
 1. _Con la consola debemos pararnos sobre el directorio donde se encuentra el proyecto._
 
 2. _Una vez allí:_
 ```
-$ cd gestor_proveedores
+$ cd gestor-proveedores
 ```
 6. _Creamos las migraciones correspondientes a las aplicaciones ejecutando:_
 ```
@@ -75,7 +81,16 @@ $ python manage.py superuser
 ```
 $ python manage.py runserver
 ```
-## _Si no es la primera vez..._
+
+
+_Si no es la primera vez..._
+1. _Con la consola debemos pararnos sobre el directorio donde se encuentra el proyecto._
+
+2. _Una vez allí:_
+```
+$ cd gestor-proveedores
+```
+3. _Ejecute:_
 ```
 $ python manage.py runserver
 ```
@@ -86,7 +101,7 @@ $ python manage.py runserver
 
 2. _Una vez allí:_
 ```
-$ cd gestor_proveedores
+$ cd gestor-proveedores
 ```
 3. _Para ejecutar los test unitarios, ejecutar el siguiente comando:_
 ```

@@ -1,0 +1,201 @@
+{% extends 'base/base.html' %}
+
+{% block title_bar %}
+    <form method="post">
+    {% csrf_token %}
+    <ol class="form-inline buttons-group action-buttons-form">
+                <li class="breadcrumb-item active">
+                    <h5 class="text-white">{{ action }} proveedor</h5>
+                </li>
+        {% if not action == 'Detalle de ' %}
+            <button  type="submit" class="btn btn-primary ml-auto action-button-color">
+                <i class="fa fa-save icono-button-action"></i>
+                GUARDAR
+            </button>
+
+            <a class="btn btn-primary float-right action-button-color back-button view"
+               href="{% url 'proveedor:proveedor_list' %}">
+                <i class="fa fa-arrow-left icono-button-action"></i>
+                VOLVER
+            </a>
+
+        {% else %}
+            <a class="btn btn-primary float-right action-button-color back-button modify"
+               href="{% url 'proveedor:proveedor_list' %}">
+                <i class="fa fa-arrow-left icono-button-action"></i>
+                VOLVER
+            </a>
+        {% endif %}
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="card form-card" >
+        <div class="datos-proveedor all">
+            <div class="row row-cols-2 datos-proveedor propios">
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{ form.cuit.name }}">{{ form.cuit.label }} *</label>
+                        <div class="form-inline w-80-percent">
+                            {{ form.cuit }}
+                            {% if not action == 'Detalle de ' %}
+                                <i class="fa fa-info-circle icono-popover" id="cuit-popover" type="button" title=""
+                                   data-container="body" data-toggle="popover" data-placement="right"
+                                   data-content="El CUIT se compone de 11 n&uacute;meros. Si su n&uacute;mero de documento se
+                                   compone de menos de 8 dígitos, rellenar con ceros a izquierda dicha sección del CUIT.
+                                   Ejemplo: 27456789987."
+                                   data-trigger="hover" aria-describedby="popover135666"></i>
+                                {{ form.cuit.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{ form.nombre.name }}">{{ form.nombre.label }} *</label>
+                        <div class="form-inline w-80-percent">
+                            {{ form.nombre }}
+                            {% if not action == 'Detalle de ' %}
+                                <i class="fa fa-info-circle icono-popover" id="nombre-popover"
+                                   type="button" title="" data-container="body" data-toggle="popover"
+                                   data-placement="right"
+                                   data-content="Puede ingresarse mas de un nombre y apellido,
+                                   separando los nombres de los apellidos por coma o espacio.
+                                   Ejemplo: Juan Matias, De Escalada."
+                                   data-trigger="hover" aria-describedby="popover135666"></i>
+                                {{ form.nombre.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{ form.email.name }}">{{ form.email.label }} *</label>
+                        <div class="form-inline w-80-percent">
+                            {{ form.email }}
+                            {% if not action == 'Detalle de ' %}
+                                <i class="fa fa-info-circle icono-popover" id="email-popover"
+                                   type="button" title="" data-container="body" data-toggle="popover"
+                                   data-placement="right" data-content="Se permiten correos cuyo nombre contenga
+                                   letras, guiones y puntos, siempre y cuando inicie con una letra.
+                                   Ejemplo: nombre@example.com"
+                                   data-trigger="hover" aria-describedby="popover135666"></i>
+                                {{ form.email.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{ form.telefono.name }}">{{ form.telefono.label }} *</label>
+                        <div class="form-inline w-80-percent" >
+                            {{ form.telefono }}
+                            {% if not action == 'Detalle de ' %}
+                                <i class="fa fa-info-circle icono-popover" id="telefono-popover"
+                                   type="button" title="" data-container="body" data-toggle="popover"
+                                   data-placement="right" data-content="Si es un número fijo o celular
+                                   puede empezar opcionalmente con el código de área entre paréntesis,
+                                   seguido de los 8 dígitos correspondientes, pudiendo ser separados en
+                                   2 grupos de 4 dígitos por un guión. Si es un número celular puede
+                                   opcionalmente iniciar con + y los dígitos de código de área, seguido
+                                   de los 8 dígitos correspondientes, pudiendo ser separados en 2 grupos de
+                                   4 dígitos por un guión. Ejemplo: +54 9 11 5667-3456."
+                                   data-trigger="hover" aria-describedby="popover135666"></i>
+                                {{ form.telefono.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="{{ form.responsableInscripto.name }}">
+                            {{ form.responsableInscripto.label }} *
+                        </label>
+                        <div class="form-inline w-80-percent">
+                            {{ form.responsableInscripto }}
+                            {% if not action == 'Detalle de ' %}
+                                <i class="fa fa-info-circle icono-popover"
+                                   id="responsable-inscripto-popover" type="button" title=""
+                                   data-container="body" data-toggle="popover" data-placement="right"
+                                   data-content="Debe indicarse la categoría con la que se encuentra inscripto
+                                   el proveedor en la AFIP."
+                                   data-trigger="hover" aria-describedby="popover135666"></i>
+                                {{ form.responsableInscripto.errors }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card list-card subcard">
+                <h5>Domicilio</h5>
+                <div class="row ml-5-percent">
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="{{ form2.provincia.name }}">{{ form2.provincia.label }} *</label>
+                            <div class="form-inline w-80-percent" >
+                                {{ form2.provincia }}
+                                {{ form2.provincia.errors }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="{{ form2.localidad.name }}">{{ form2.localidad.label }} *</label>
+                            <div class="form-inline w-80-percent" >
+                                {{ form2.localidad }}
+                                {{ form2.localidad.errors }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="{{ form2.calle.name }}">{{ form2.calle.label }} *</label>
+                            <div class="form-inline w-80-percent" >
+                                {{ form2.calle }}
+                                {{ form2.calle.errors }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-md-offset-2">
+                        <div class="form-group">
+                            <label for="{{ form2.numero.name }}">{{ form2.numero.label }} *</label>
+                            <div class="form-inline w-80-percent">
+                                {{ form2.numero }}
+                                {{ form2.numero.errors }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block extrastatic %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+                integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+                integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+                crossorigin="anonymous"></script>
+
+        <script>
+            $('#cuit-popover').popover();
+            $('#email-popover').popover();
+            $('#nombre-popover').popover();
+            $('#telefono-popover').popover();
+            $('#responsable-inscripto-popover').popover();
+        </script>
+    {% endblock %}
+{% endblock %}
+</form>

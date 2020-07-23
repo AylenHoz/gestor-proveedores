@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="card delete-card">
+        <form method="POST">
+            {% csrf_token %}
+            <h5>¿Desea eliminar al proveedor {{ object.nombre }} CUIT: {{ object.cuit }}?</h5>
+            <h5>¡Esta acci&oacute;n no se podr&aacute; deshacer!</h5>
+            <div class ="form-inline delete-buttons">
+                <button class="btn btn-danger" type="submit">S&iacute;, eliminar</button>
+                <a class="btn btn-info" href="{% url 'proveedor:proveedor_list' %}">No, gracias</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{%  load static %}
+
+{% block title_bar %}
+    <ol class="form-inline buttons-group action-buttons-form">
+        <li class="breadcrumb-item active">
+            <h5 class="text-white">Proveedores</h5>
+        </li>
+        <a class="btn btn-primary float-right action-button-color mr-5-percent"
+           href="{% url 'proveedor:proveedor_new' %}">
+            <i class="fa fa-plus-circle"></i>
+            Nuevo proveedor
+        </a>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="card table-card">
+        {% if object_list %}
+            <table class="table table-list table-hover table-bordered">
+                <thead>
+                <tr class="table-active">
+                    <th scope="col">CUIT</th>
+                    <th scope="col">Nombre</th>
+                    <th class="acciones" scope="col">Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for proveedor in object_list %}
+                    <tr class="table-default">
+                        <td>{{ proveedor.cuit }}</td>
+                        <td>{{ proveedor.nombre }}</td>
+                        <td class="acciones">
+                            <a class="btn btn-info" href="{% url 'proveedor:proveedor_view' proveedor.id %}">
+                                <i class="fa fa-eye"></i>
+                                VER DETALLE
+                            </a>
+
+                            <a class="btn btn-primary" href="{% url 'proveedor:proveedor_edit' proveedor.id %}">
+                                <i class="fa fa-pen"></i>
+                                EDITAR
+                            </a>
+
+                            <a class="btn btn-danger" href="{% url 'proveedor:proveedor_delete' proveedor.id %}">
+                                <i class="fa fa-trash-alt"></i>
+                                ELIMINAR
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="buttons-group align-self-end">
+                {% if page_obj.has_previous or page_obj.has_next %}
+                    {% if page_obj.has_previous %}
+                        <a class="page-arrow previous-page" href="?page={{ page_obj.previous_page_number }}">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    {% endif %}
+
+                    <button class="page-number">
+                        P&aacute;g. {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                    </button>
+
+                    {% if page_obj.has_next %}
+                        <a class="page-arrow next-page" href="?page={{ page_obj.next_page_number }}">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    {% endif %}
+                {%  endif %}
+            </div>
+        {% else %}
+            <h6 class="sin-registros">No hay registros de proveedores en el sistema.</h6>
+        {% endif %}
+    </div>
+{%  endblock %}

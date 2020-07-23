@@ -1,0 +1,71 @@
+.w-80-percent input, .w-80-percent select {
+    width: 80% !important;
+}
+
+.w-80-percent ul {
+    width: 80%;
+    padding-left: 3%;
+    padding-top: 3px;
+}
+
+.w-80-percent li {
+    font-size: small;
+    list-style:none;
+    color: red;
+}
+
+.form-card {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 125px;
+}
+
+.subcard {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-right: 4%;
+    padding-top: 25px;
+    padding-bottom: 15px;
+}
+
+.subcard h5 {
+    margin-left: 6.5%;
+    margin-top: 5px;
+    margin-right: 4%;
+    margin-bottom: 15px;
+}
+
+.action-buttons-form {
+    width: 100%;
+    background-color: #77C2AD;
+    margin-top: 0;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.back-button.view {
+    margin-left: 10px !important;
+    margin-right: 5%;
+}
+
+.back-button.modify {
+    margin-left: auto !important;
+    margin-right: 5%;
+}
+
+.datos-proveedor.all {
+    margin-left: 4%;
+    margin-top: 10px;
+}
+
+.datos-proveedor.propios {
+    margin-left: 5%;
+    margin-right: 3%;
+    margin-top: 3%;
+}
+
+.icono-popover {
+    margin-left: 10px;
+}

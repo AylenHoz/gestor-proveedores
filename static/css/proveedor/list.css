@@ -1,0 +1,80 @@
+
+.table-list{
+    width: 90%;
+        margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-top: 40px;
+    border-width: 2px;
+    border-color: gray;
+}
+
+.table thead th {
+    text-align: center;
+    color: gray;
+    border: 2px solid gray;
+    border-bottom: 2px solid gray;
+}
+
+.table td {
+    text-align: center;
+    background-color: white;
+    border: 2px solid gray;
+    vertical-align: middle;
+}
+
+.acciones {
+    width: 45%;
+}
+
+.table-default:hover > td {
+  background-color: #e9ecef !important;
+}
+
+body {
+    background-color: #d5f3ea;
+}
+
+.buttons-group {
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.page-number {
+    color: gray;
+    background-color: transparent;
+    border: none;
+    font-weight: normal;
+    height: 36px;
+}
+
+.table-card {
+    width: 90%;
+    margin: auto;
+    margin-top: 125px;
+}
+
+.form-inline.buttons-group a {
+    margin-left: auto;
+}
+
+.page-arrow {
+    vertical-align: middle;
+    font-size: 1.7rem;
+}
+
+.page-arrow.previous-page {
+   margin-right: 10px;
+}
+
+.page-arrow.next-page {
+   margin-left: 10px;
+}
+
+.sin-registros {
+    margin: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-weight: bold;
+}

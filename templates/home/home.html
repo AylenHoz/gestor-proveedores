@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{%  load static %}
+
+{% block title_bar %}
+    <ol class="form-inline buttons-group title-bar">
+        <li class="breadcrumb-item active">
+            <h5 class="text-white">Home</h5>
+        </li>
+        <a class="btn btn-primary float-right action-button-color button-list-style"
+           href="{% url 'proveedor:proveedor_list' %}">
+            <i class="fa fa-user icono-button-action"></i>
+            LISTA DE PROVEEDORES
+        </a>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="card table-card bienvenido">
+        <h3>¡Bienvenido!</h3>
+    </div>
+{% endblock %}

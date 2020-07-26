@@ -73,7 +73,7 @@ $ python manage.py migrate
 ```
 5. _Creamos el superuser que nos permitirá acceder al administrador de Django en el proyecto:_
 ```
-$ python manage.py superuser
+$ python manage.py createsuperuser
 ```
 6. _Introduzca las credenciales que desea para el administrador._
 

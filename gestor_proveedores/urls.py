@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import login, logout_then_login
+from django.contrib.auth.decorators import login_required
 from proveedor.views import index
-
-app_name = "proveedor"
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', index, name='home'),
+    url(r'^$', login, {'template_name':'usuario/login.html'}, name='login_base'),
+    url(r'^accounts/login/', login, {'template_name':'usuario/login.html'}, name='login'),
+    url(r'^logout/', logout_then_login, name='logout'),
+    url(r'^usuario/', include ('usuario.urls')),
+    url(r'^home/', login_required(index), name='home'),
     url(r'^proveedor/', include ('proveedor.urls')),
 ]

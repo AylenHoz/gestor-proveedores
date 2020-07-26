@@ -56,3 +56,13 @@
 .mr-5-percent {
     margin-right: 5%;
 }
+
+.opciones {
+    margin-left: auto;
+    margin-right: 6%;
+}
+
+.opciones .cerrar-sesion {
+    margin-left: 10px;
+}
+

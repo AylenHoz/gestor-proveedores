@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+    <nav class="navbar navbar-expand-lg navbar-dark nav-bg-personalize">
+        <a class="navbar-brand">
+            <i class="fa fa-user app-title-position"></i>
+            Gestor de proveedores
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarColor01" aria-controls="navbarColor01"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+{% endblock %}
+
+{% block title_bar %}
+    <form method="post">
+    {% csrf_token %}
+    <ol class="form-inline buttons-group action-buttons-form">
+        <li class="breadcrumb-item active">
+            <h5 class="text-white">Login</h5>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block content %}
+    <div class="card form-card-user login" >
+        <div class="login-form">
+            <div class="row row-cols-1">
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="username">Nombre de usuario</label>
+                        <div class="form-inline user-field">
+                            <input class="form-control w-100-percent" type="text" name="username">
+                            {{ form.username.errors }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="username">Contrase&ntilde;a</label>
+                        <div class="form-inline user-field">
+                            <input class="form-control w-100-percent" type="password" name="password">
+                            {{ form.password.errors }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-md-offset-2 text-center">
+                    <div class="form-group">
+                        <input class="btn btn-primary w-100-percent" type="submit" value="Ingresar">
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-md-offset-2 text-center">
+                    <div class="form-group">
+                        ¿No tienes cuenta?
+                        <a href="{% url 'usuario:registrar' %}">Registrate</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+</form>

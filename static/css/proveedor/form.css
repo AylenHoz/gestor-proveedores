@@ -69,3 +69,42 @@
 .icono-popover {
     margin-left: 10px;
 }
+
+.w-100-percent {
+    width: 100% !important;
+}
+
+.form-inline.user-field li {
+    font-size: small;
+    list-style:none;
+    color: red;
+}
+
+.form-inline.user-field ul {
+    width: 80%;
+    padding-left: 3%;
+    padding-top: 3px;
+}
+
+.form-card-user {
+    width: 50%;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.form-card-user.login {
+    margin-top: 15%;
+}
+
+.form-card-user.registrar {
+    margin-top: 10%;
+}
+
+.form-card-user .login-form {
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}

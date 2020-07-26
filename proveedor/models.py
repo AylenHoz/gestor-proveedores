@@ -7,16 +7,16 @@ from django.db import models
 
 categorias = [('', 'Seleccione una categoría'),
               ('Responsable no inscripto', 'Responsable no inscripto'),
-              ('Responsable inscripto - Categoria A', 'Responsable inscripto - Categoría A'),
-              ('Responsable inscripto - Categoria B', 'Responsable inscripto - Categoría B'),
-              ('Responsable inscripto - Categoria C', 'Responsable inscripto - Categoría C'),
-              ('Responsable inscripto - Categoria D', 'Responsable inscripto - Categoría D'),
-              ('Monotributista - Categoria A', 'Monotributista - Categoría A'),
-              ('Monotributista - Categoria B', 'Monotributista - Categoría B'),
-              ('Monotributista - Categoria C', 'Monotributista - Categoría C'),
-              ('Monotributista - Categoria D', 'Monotributista - Categoría D'),
-              ('Monotributista - Categoria E', 'Monotributista - Categoría E'),
-              ('Monotributista - Categoria F', 'Monotributista - Categoría F'),
+              ('Responsable inscripto - Categoría A', 'Responsable inscripto - Categoría A'),
+              ('Responsable inscripto - Categoría B', 'Responsable inscripto - Categoría B'),
+              ('Responsable inscripto - Categoría C', 'Responsable inscripto - Categoría C'),
+              ('Responsable inscripto - Categoría D', 'Responsable inscripto - Categoría D'),
+              ('Monotributista - Categoría A', 'Monotributista - Categoría A'),
+              ('Monotributista - Categoría B', 'Monotributista - Categoría B'),
+              ('Monotributista - Categoría C', 'Monotributista - Categoría C'),
+              ('Monotributista - Categoría D', 'Monotributista - Categoría D'),
+              ('Monotributista - Categoría E', 'Monotributista - Categoría E'),
+              ('Monotributista - Categoría F', 'Monotributista - Categoría F'),
 ]
 
 provincias = [('', 'Seleccione una provincia'),
@@ -48,7 +48,7 @@ class Direccion(models.Model):
     provincia = models.CharField(max_length=100, default="", choices=provincias)
     localidad = models.CharField(max_length=50)
     calle = models.CharField(max_length=50)
-    numero = models.IntegerField()
+    numero = models.CharField(max_length=50)
 
 class Proveedor(models.Model):
     cuit = models.CharField(max_length=50)

@@ -1,7 +1,7 @@
 
 from django.test import TestCase
-from apps.proveedor.forms import ProveedorForm
-from apps.proveedor.models import Proveedor, Direccion
+from ..forms import *
+from ..models import *
 
 class TestForms(TestCase):
     def test_proveedor_form_valid_data(self):

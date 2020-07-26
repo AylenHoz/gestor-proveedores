@@ -1,11 +1,12 @@
 #-*⁻ encoding: utf-8 -*-
 from django import forms
-from models import Proveedor, Direccion
 from django.core.exceptions import ValidationError
 import re
+from .models import *
 
 number_regex = '[0-9]'
-char_regex = '[A-Za-z]'
+char_regex = '[a-zA-Z]'
+char_con_acentos_y_enie_regex = '(' + char_regex + '|ñ|Ñ|á|é|í|ó|ú|Á|É|Í|Ó|Ú|ä|ë|ï|ö|ü|Ä|Ë|Ï|Ö|Ü)'
 space = '\s'
 
 class ProveedorForm(forms.ModelForm):
@@ -41,10 +42,9 @@ class ProveedorForm(forms.ModelForm):
         self.fields['telefono'].required = False
         self.fields['responsableInscripto'].required = False
 
-
     def clean_cuit(self, *args, **kwargs):
         cuit = self.cleaned_data['cuit']
-        if str(cuit) is '':
+        if cuit == '':
             raise ValidationError(['Ingrese el CUIT del proveedor.',
                                    'Ejemplo: 27-37897667-7'])
         else:
@@ -53,12 +53,12 @@ class ProveedorForm(forms.ModelForm):
                 cuit_con_guiones = cuit_sin_guiones[0:2] + '-' + cuit_sin_guiones[2:10] + '-' + cuit_sin_guiones[10:11]
                 coincidencias_cuit_1 = Proveedor.objects.all().filter(cuit=cuit_sin_guiones).exclude(pk=self.instance.id)
                 coincidencias_cuit_2 = Proveedor.objects.all().filter(cuit=cuit_con_guiones).exclude(pk=self.instance.id)
-                if len(coincidencias_cuit_1) is 0 and len(coincidencias_cuit_2) is 0:
+                if len(coincidencias_cuit_1) == 0 and len(coincidencias_cuit_2) == 0:
                     begin = r'^((20)|(23)|(24)|(25)|(26)|(27)|(30)){1}'
                     regex1 = begin + number_regex + '{8}' + number_regex + '{1}$'
                     regex2 = begin + '-{1}' + number_regex + '{8}-{1}' + number_regex + '{1}$'
-                    match1 = re.match(regex1, str(cuit), 0)
-                    match2 = re.match(regex2, str(cuit), 0)
+                    match1 = re.match(regex1, cuit.encode('utf-8'), 0)
+                    match2 = re.match(regex2, cuit.encode('utf-8'), 0)
                     if match1 is not None or match2 is not None:
                         return cuit
                     raise ValidationError(['Ingrese un CUIT válido.',
@@ -73,13 +73,13 @@ class ProveedorForm(forms.ModelForm):
 
     def clean_nombre(self, *args, **kwargs):
         nombre = self.cleaned_data['nombre']
-        if str(nombre) is '':
+        if nombre == '':
             raise ValidationError(['Ingrese el nombre y apellido del proveedor.',
                                   'Ejemplo: Juan Rodriguez.'])
         else:
-            regex = r'^(' + char_regex + '{2,}' + '(' + space + '+' + char_regex + '{2,}' + ')*(((,?'+ space + '+' +\
-                    ')){1}('+ char_regex + '{2,}' + '(' + space + '+' + char_regex + '{2,}' + ')*)))$'
-            match = re.match(regex, str(nombre), 0)
+            regex = r'^(' + char_con_acentos_y_enie_regex + '{2,}' + '(' + space + '+' + char_con_acentos_y_enie_regex + '{2,}' + ')*(((,?'+ space + '+' +\
+                    ')){1}('+ char_con_acentos_y_enie_regex + '{2,}' + '(' + space + '+' + char_con_acentos_y_enie_regex + '{2,}' + ')*)))$'
+            match = re.match(regex, nombre.encode('utf-8'), 0)
             if match is not None:
                 return nombre
             raise ValidationError(['Ingrese nombre/s y apellido/s válido/s.'
@@ -87,13 +87,14 @@ class ProveedorForm(forms.ModelForm):
 
     def clean_email(self, *args, **kwargs):
         email = self.cleaned_data['email']
-        if str(email) is '':
+        if email == '':
             raise ValidationError(['Ingrese el email del proveedor.',
                                    'Se permiten letras, guiones y puntos.',
                                    'Ejemplo: example@correo.com.ar'])
         else:
-            regex = r'^(' + char_regex + '{1}(-|_|\.|' + char_regex + ')*@' + char_regex + '+(\.' + char_regex + '+)+)$'
-            match = re.match(regex, str(email), 0)
+            regex = r'^(' + char_regex + '{1}(-|_|\.|' + char_regex + ')*@' + char_regex +\
+                    '+(\.' + char_regex + '+)+)$'
+            match = re.match(regex, email.encode('utf-8'), 0)
             if match is not None:
                 return email
             raise ValidationError(['Ingrese un correo válido.',
@@ -103,14 +104,17 @@ class ProveedorForm(forms.ModelForm):
 
     def clean_telefono(self, *args, **kwargs):
         telefono = self.cleaned_data['telefono']
-        if str(telefono) is '':
+        if telefono == '':
             raise ValidationError(['Ingrese el teléfono del proveedor.',
                                    'Ejemplo: +54 9 11 6789-5670'])
         else:
-            regex = r'^(((\(' + number_regex + '+\))|(\+(' + space + '?' + number_regex +\
-                '+)+)' + space + ')?((' + number_regex + '{4}-' + number_regex +\
-                '{4})|(' + number_regex + '{8})){1})$'
-            match = re.match(regex, str(telefono), 0)
+            regex = r'^((((\(011\)' + space + '(' + number_regex +\
+                '+' + space + ')*)|(\+(' + space + '?' + number_regex +\
+                '+)+' + space + '))?((' + number_regex + '{4}-' + number_regex +\
+                '{4})|(' + number_regex + '{8})))|(((\(' + number_regex + '+\))|((' + space + '?' + number_regex +\
+                '+)+)' + space + ')?((' + number_regex + '{3}-' + number_regex +\
+                '{4})|(' + number_regex + '{7}))))$'
+            match = re.match(regex, telefono.encode('utf-8'), 0)
             if match is not None:
                 return telefono
             raise ValidationError(['Ingrese un teléfono válido.',
@@ -118,7 +122,7 @@ class ProveedorForm(forms.ModelForm):
 
     def clean_responsableInscripto(self, *args, **kwargs):
         responsableInscripto = self.cleaned_data['responsableInscripto']
-        if str(responsableInscripto) is '':
+        if responsableInscripto == '':
             raise ValidationError('Seleccione una categoría de responsable inscripto.')
         return responsableInscripto
 
@@ -153,18 +157,18 @@ class DireccionForm(forms.ModelForm):
 
     def clean_provincia(self, *args, **kwargs):
         provincia = self.cleaned_data['provincia']
-        if str(provincia) is '':
+        if provincia == '':
             raise ValidationError('Seleccione una provincia.')
         return provincia
 
     def clean_localidad(self, *args, **kwargs):
         localidad = self.cleaned_data['localidad']
-        if str(localidad) is '':
+        if localidad == '':
             raise ValidationError(['Ingrese una localidad o partido.',
                                    'Ejemplo: 3 de Febrero'])
         else:
-            regex = r'^((' + space + '|' + char_regex + '|' + number_regex + ')+)$'
-            match = re.match(regex, str(localidad), 0)
+            regex = r'^((' + space + '|' + char_con_acentos_y_enie_regex + '|' + number_regex + ')+)$'
+            match = re.match(regex, localidad.encode('utf-8'), 0)
             if match is not None:
                 return localidad
             raise ValidationError(['Ingrese una localidad o partido válido.',
@@ -172,12 +176,12 @@ class DireccionForm(forms.ModelForm):
 
     def clean_calle(self, *args, **kwargs):
         calle = self.cleaned_data['calle']
-        if str(calle) is '':
+        if calle == '':
             raise ValidationError(['Ingrese una calle.',
                                    'Ejemplo: 25 de Mayo'])
         else:
-            regex = r'^((' + space + '|' + char_regex + '|' + number_regex + ')+)$'
-            match = re.match(regex, str(calle), 0)
+            regex = r'^((' + space + '|' + char_con_acentos_y_enie_regex + '|' + number_regex + ')+)$'
+            match = re.match(regex, calle.encode('utf-8'), 0)
             if match is not None:
                 return calle
             raise ValidationError(['Ingrese una calle válida.',
@@ -185,12 +189,12 @@ class DireccionForm(forms.ModelForm):
 
     def clean_numero(self, *args, **kwargs):
         numero = self.cleaned_data['numero']
-        if str(numero) is '':
+        if numero == '':
             raise ValidationError(['Ingrese el número correspondiente a la dirección.',
                                     'Ejemplo: 2500'])
         else:
-            regex = r'^((' + number_regex + ')+)$'
-            match = re.match(regex, str(numero), 0)
+            regex = r'^((' + number_regex + '|' + char_regex + '|' + space + ')+)$'
+            match = re.match(regex, numero.encode('utf-8'), 0)
             if match is not None:
                 return numero
             return ValidationError(['Ingrese el número válido correspondiente a la calle ingresada.',

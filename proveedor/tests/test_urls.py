@@ -1,6 +1,6 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from apps.proveedor.views import ProveedorList, ProveedorNew, ProveedorEdit, ProveedorDelete, ProveedorView
+from ..views import *
 
 class TestUrls(SimpleTestCase):
     print('')

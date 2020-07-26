@@ -4,9 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from django.http import HttpResponseRedirect, HttpResponse
-from models import Proveedor, Direccion
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from forms import ProveedorForm, DireccionForm
+from .forms import *
 
 
 def index(request):

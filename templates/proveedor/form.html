@@ -40,10 +40,10 @@
                             {{ form.cuit }}
                             {% if not action == 'Detalle de ' %}
                                 <i class="fa fa-info-circle icono-popover" id="cuit-popover" type="button" title=""
-                                   data-container="body" data-toggle="popover" data-placement="right"
-                                   data-content="El CUIT se compone de 11 n&uacute;meros. Si su n&uacute;mero de documento se
-                                   compone de menos de 8 dígitos, rellenar con ceros a izquierda dicha sección del CUIT.
-                                   Ejemplo: 27456789987."
+                                   data-container="body" data-html="true" data-toggle="popover" data-placement="right"
+                                   data-content="El CUIT se compone de 11 n&uacute;meros, sea una persona f&iacute;sica o jur&iacute;dica.
+                                   Si el n&uacute;mero de documento del proveedor se compone de menos de 8 dígitos, rellenar con ceros a
+                                   izquierda dicha sección del CUIT. <br/>Ejemplo: 27-00268998-7."
                                    data-trigger="hover" aria-describedby="popover135666"></i>
                                 {{ form.cuit.errors }}
                             {% endif %}
@@ -59,9 +59,9 @@
                             {% if not action == 'Detalle de ' %}
                                 <i class="fa fa-info-circle icono-popover" id="nombre-popover"
                                    type="button" title="" data-container="body" data-toggle="popover"
-                                   data-placement="right"
-                                   data-content="Puede ingresarse mas de un nombre y apellido,
-                                   separando los nombres de los apellidos por coma o espacio.
+                                   data-placement="right" data-html="true"
+                                   data-content="Debe ingresarse al menos un nombre y apellido,
+                                   separando los nombres de los apellidos por coma o espacio.<br/>
                                    Ejemplo: Juan Matias, De Escalada."
                                    data-trigger="hover" aria-describedby="popover135666"></i>
                                 {{ form.nombre.errors }}
@@ -77,10 +77,10 @@
                             {{ form.email }}
                             {% if not action == 'Detalle de ' %}
                                 <i class="fa fa-info-circle icono-popover" id="email-popover"
-                                   type="button" title="" data-container="body" data-toggle="popover"
+                                   type="button" title="" data-container="body" data-toggle="popover" data-html="true"
                                    data-placement="right" data-content="Se permiten correos cuyo nombre contenga
                                    letras, guiones y puntos, siempre y cuando inicie con una letra.
-                                   Ejemplo: nombre@example.com"
+                                   <br/>Ejemplo: nombre@example.com"
                                    data-trigger="hover" aria-describedby="popover135666"></i>
                                 {{ form.email.errors }}
                             {% endif %}
@@ -95,14 +95,17 @@
                             {{ form.telefono }}
                             {% if not action == 'Detalle de ' %}
                                 <i class="fa fa-info-circle icono-popover" id="telefono-popover"
-                                   type="button" title="" data-container="body" data-toggle="popover"
+                                   type="button" title="" data-container="body" data-toggle="popover" data-html="true"
                                    data-placement="right" data-content="Si es un número fijo o celular
                                    puede empezar opcionalmente con el código de área entre paréntesis,
-                                   seguido de los 8 dígitos correspondientes, pudiendo ser separados en
-                                   2 grupos de 4 dígitos por un guión. Si es un número celular puede
+                                   seguido de los dígitos correspondientes (8 para celular,
+                                   7 para n&uacute;mero fijo), pudiendo ser separados en
+                                   2 grupos por un guión (de 4 dígitos cada uno en caso de celular;
+                                   el primero de 4 d&iacute;gitos y el segundo de 3 d&iacute;gitos
+                                   en caso de tel&eacute;fono fijo). Si es un número celular puede
                                    opcionalmente iniciar con + y los dígitos de código de área, seguido
                                    de los 8 dígitos correspondientes, pudiendo ser separados en 2 grupos de
-                                   4 dígitos por un guión. Ejemplo: +54 9 11 5667-3456."
+                                   4 dígitos por un guión.<br/>Ejemplo: +54 9 11 5667-3456."
                                    data-trigger="hover" aria-describedby="popover135666"></i>
                                 {{ form.telefono.errors }}
                             {% endif %}
@@ -121,7 +124,7 @@
                                 <i class="fa fa-info-circle icono-popover"
                                    id="responsable-inscripto-popover" type="button" title=""
                                    data-container="body" data-toggle="popover" data-placement="right"
-                                   data-content="Debe indicarse la categoría con la que se encuentra inscripto
+                                   data-content="Debe indicarse la categor&iacute;a con la que se encuentra inscripto
                                    el proveedor en la AFIP."
                                    data-trigger="hover" aria-describedby="popover135666"></i>
                                 {{ form.responsableInscripto.errors }}

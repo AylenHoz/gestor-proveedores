@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.conf.urls import url
-from views import ProveedorList, ProveedorNew, ProveedorEdit, ProveedorDelete, ProveedorView
+from .views import *
 
+app_name = 'proveedor'
 urlpatterns = [
     url(r'^list/', ProveedorList.as_view(), name='proveedor_list'),
     url(r'^new$', ProveedorNew.as_view(), name='proveedor_new'),

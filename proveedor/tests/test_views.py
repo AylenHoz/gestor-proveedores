@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse
-from apps.proveedor.models import Proveedor, Direccion
+from ..models import *
 
 class TestViews(TestCase):
 
